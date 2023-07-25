@@ -20,8 +20,8 @@ public class ProductsController {
 		return productsService.getAllProducts();
 	}
 
-	@GetMapping("/products/{id}")
-	public Optional<Products> getProductsByID(UUID productID){
+	@GetMapping("/products/{productID}")
+	public Optional<Products> getProductsByID(@PathVariable UUID productID){
 		return productsService.getProductsByID(productID);
 	}
 
