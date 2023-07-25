@@ -21,9 +21,6 @@ import java.util.List;
 public class Products extends DefaultEntity {
 
     @Column()
-    private String name;
-
-    @Column()
     private String price;
 
     @Column
