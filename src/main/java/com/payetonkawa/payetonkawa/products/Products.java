@@ -23,9 +23,6 @@ public class Products extends DefaultEntity {
     @Column()
     private String price;
 
-    @Column
-    private String name;
-
     @Column()
     private String description;
 
