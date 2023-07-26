@@ -44,6 +44,12 @@ public class Customers extends DefaultEntity {
 	@Column()
 	private String companyName;
 
+	@Column()
+	private String email;
+
+	@Column()
+	private String token;
+
 	@OneToMany(mappedBy = "customers")
 	//@JsonIgnore
 	private List<Orders> ordersList;
