@@ -28,19 +28,10 @@ public class ProductsController {
 	}
 
 	@GetMapping("/products/{productID}")
-	public Optional<Products> getProductsByID(@RequestParam String token, @PathVariable UUID productID){
-		if(customersRepository.findCustomersByToken(token).isPresent()){
+	public Optional<Products> getProductsByID(@RequestParam String token, @PathVariable UUID productID) {
+		if (customersRepository.findCustomersByToken(token).isPresent()) {
 			return productsService.getProductsByID(productID);
-		}else{
-			return null;
-		}
-	}
-
-	@PostMapping("/products")
-	public Products createProducts(@RequestParam String token, @RequestBody Products products) {
-		if(customersRepository.findCustomersByToken(token).isPresent()){
-			return productsService.createProducts(products);
-		}else{
+		} else {
 			return null;
 		}
 	}
