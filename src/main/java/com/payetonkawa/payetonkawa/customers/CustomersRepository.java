@@ -7,5 +7,7 @@ import java.util.UUID;
 
 public interface CustomersRepository extends JpaRepository<Customers, UUID> {
 
-    Optional<Customers> findByEmail(String email);
+    Optional<Customers> findCustomersByEmail(String email);
+
+    Optional<Customers> findCustomersByToken(String token);
 }

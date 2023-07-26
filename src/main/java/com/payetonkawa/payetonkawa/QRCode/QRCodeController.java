@@ -23,8 +23,8 @@ public class QRCodeController {
 
     private IQRCodeService qrCodeService;
 
-    @GetMapping("/")
-    public String getQRCode( @RequestParam String email, Model model) throws MessagingException {
+    @GetMapping("/qrCode")
+    public String getQRCode(@RequestParam String email, Model model) throws MessagingException {
         return qrCodeService.getQRCode(email, model);
     }
 }

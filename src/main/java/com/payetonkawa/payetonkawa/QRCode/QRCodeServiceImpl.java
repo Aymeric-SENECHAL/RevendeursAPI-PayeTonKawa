@@ -29,7 +29,7 @@ public class QRCodeServiceImpl implements IQRCodeService{
     @Override
     public String getQRCode(String email, Model model) throws MessagingException{
         String medium="https://rahul26021999.medium.com/";
-        Optional<Customers> customers = customersRepository.findByEmail(email);
+        Optional<Customers> customers = customersRepository.findCustomersByEmail(email);
         String token = customers.get().getToken();
         if(token == null)
         {
