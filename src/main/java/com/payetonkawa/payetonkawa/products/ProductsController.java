@@ -24,10 +24,4 @@ public class ProductsController {
 	public Optional<Products> getProductsByID(@PathVariable UUID productID){
 		return productsService.getProductsByID(productID);
 	}
-
-	@PostMapping("/products")
-	public Products createProducts(@RequestBody Products products) {
-		return productsService.createProducts(products);
-	}
-
 }
