@@ -44,5 +44,4 @@ public class ProductsController {
 			return null;
 		}
 	}
-
 }
