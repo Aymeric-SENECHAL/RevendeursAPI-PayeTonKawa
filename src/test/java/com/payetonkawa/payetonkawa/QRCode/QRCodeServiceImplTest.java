@@ -16,10 +16,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -70,5 +71,15 @@ public class QRCodeServiceImplTest {
         verify(customersRepository, times(1)).findCustomersByEmail(testEmail);
         verify(customersRepository, times(1)).save(mockCustomers);
         verify(sendEmailService, times(1)).sendEmail(testEmail, "tetsts", "Un test", "./src/main/resources/static/img/QRCode.png");
+    }
+
+
+    @Test
+    void builder() {
+        QRCodeServiceImpl.QRCodeServiceImplBuilder builder = QRCodeServiceImpl.builder();
+        assertNotNull(builder);
+
+        QRCodeServiceImpl qrCodeService = builder.build();
+        assertNotNull(qrCodeService);
     }
 }
