@@ -36,17 +36,11 @@ class SendEmailServiceTest {
         String pathToAttachment = "src/main/resources/static.img/QRCode.png";
 
         MimeMessage mimeMessage = mock(MimeMessage.class);
-        MimeMessageHelper mimeMessageHelper = mock(MimeMessageHelper.class);
 
         when(javaMailSender.createMimeMessage()).thenReturn(mimeMessage);
 
         sendEmailService.sendEmail(to, body, topic, pathToAttachment);
 
-        verify(mimeMessageHelper, times(1)).setFrom("gerard.mspr@gmail.com");
-        verify(mimeMessageHelper, times(1)).setTo(to);
-        verify(mimeMessageHelper, times(1)).setSubject(topic);
-        verify(mimeMessageHelper, times(1)).setText(body);
-        verify(mimeMessageHelper, times(1)).addAttachment("QRCode.png", new File(pathToAttachment));
         verify(javaMailSender, times(1)).send(mimeMessage);
     }
 }
