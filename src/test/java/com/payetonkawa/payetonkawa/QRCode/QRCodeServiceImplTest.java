@@ -5,6 +5,7 @@ import com.payetonkawa.payetonkawa.customers.Customers;
 import com.payetonkawa.payetonkawa.customers.CustomersRepository;
 import com.payetonkawa.payetonkawa.products.SendEmailService;
 import jakarta.mail.MessagingException;
+import com.payetonkawa.payetonkawa.QRCode.QRCodeGenerator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +17,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,6 +34,8 @@ public class QRCodeServiceImplTest {
 
     @Mock
     private Model model;
+    @Mock
+    private QRCodeGenerator qrCodeGenerator;
 
     @InjectMocks
     private QRCodeServiceImpl qrCodeService;
@@ -49,30 +50,24 @@ public class QRCodeServiceImplTest {
 
 
     @Test
-    public void testGetQRCode() throws MessagingException, WriterException, IOException {
-        // Mocking the Customers object and its repository
+    public void testGetQRCode() throws MessagingException {
         Customers mockCustomers = new Customers();
         mockCustomers.setEmail(testEmail);
         mockCustomers.setToken(null);
 
         when(customersRepository.findCustomersByEmail(testEmail)).thenReturn(Optional.of(mockCustomers));
 
-
-        // Injecting the mock QRCodeGenerator into QRCodeServiceImpl
         QRCodeServiceImpl qrCodeServiceWithMockGenerator = new QRCodeServiceImpl(customersRepository, sendEmailService);
 
         doNothing().when(sendEmailService).sendEmail(anyString(), anyString(), anyString(), anyString());
 
-        // Call the method to test
         String result = qrCodeServiceWithMockGenerator.getQRCode(testEmail, model);
 
-        // Assertions
         assertEquals("qrcode", result);
         verify(customersRepository, times(1)).findCustomersByEmail(testEmail);
         verify(customersRepository, times(1)).save(mockCustomers);
-        verify(sendEmailService, times(1)).sendEmail(testEmail, "tetsts", "Un test", "./src/main/resources/static/img/QRCode.png");
+        verify(sendEmailService, times(1)).sendEmail(testEmail, "Bonjour, voici votre qrcode en P-J.", "QRCode pour votre connexion", "./src/main/resources/static/img/QRCode.png");
     }
-
 
     @Test
     void builder() {

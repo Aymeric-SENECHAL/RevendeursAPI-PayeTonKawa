@@ -13,8 +13,8 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@SuperBuilder
-@AllArgsConstructor
+//@SuperBuilder
+//@AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -26,12 +26,12 @@ public abstract class DefaultEntity {
     @Column(name = "created_at")
     private Instant createdAt;
 
-    @PrePersist
+    /*@PrePersist
     private void prePersist() {
         if (this.id == null) {
             this.id = UUID.randomUUID();
         }
         this.createdAt = Instant.now();
-    }
+    }*/
 
 }

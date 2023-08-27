@@ -47,12 +47,12 @@ public class QRCodeServiceImpl implements IQRCodeService{
             QRCodeGenerator.generateQRCodeImage(token,250,250,QR_CODE_IMAGE_PATH);
 
         } catch (WriterException | IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         model.addAttribute("token",token);
 
-        sendEmailService.sendEmail(customers.get().getEmail(), "tetsts", "Un test", QR_CODE_IMAGE_PATH);
+        sendEmailService.sendEmail(customers.get().getEmail(), "Bonjour, voici votre qrcode en P-J.", "QRCode pour votre connexion", QR_CODE_IMAGE_PATH);
 
         return "qrcode";
     }

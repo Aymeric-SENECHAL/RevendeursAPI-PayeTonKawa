@@ -1,5 +1,6 @@
 package com.payetonkawa.payetonkawa.utils;
 
+import com.fasterxml.jackson.core.JsonFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
