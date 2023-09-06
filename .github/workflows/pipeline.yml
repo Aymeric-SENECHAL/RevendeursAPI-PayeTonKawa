@@ -28,11 +28,11 @@ jobs:
       - name: Run Spring Boot Application
         run: java -jar target/payetonkawa-0.0.1-SNAPSHOT.jar &
 
-      - name: Run Tests
-        run: mvn test
-
       - name: Stop Spring Boot Application
         run: pkill -f "java -jar target/payetonkawa-0.0.1-SNAPSHOT.jar"
+
+      - name: Run Tests
+        run: mvn test
 
       - name: Stop PostgreSQL
         run: docker-compose down
