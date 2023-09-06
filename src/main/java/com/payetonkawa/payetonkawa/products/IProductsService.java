@@ -8,4 +8,6 @@ public interface IProductsService {
 	List<Products> getAllProducts();
 
 	Optional<Products> getProductsByID(UUID productID);
+
+	Products createProducts(Products products);
 }

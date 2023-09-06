@@ -35,4 +35,12 @@ public class ProductsController {
 			return null;
 		}
 	}
+	@PostMapping("/products")
+	public Products createProducts(@RequestParam String token, @RequestBody Products products) {
+		if(customersRepository.findCustomersByToken(token).isPresent()){
+			return productsService.createProducts(products);
+		}else{
+			return null;
+		}
+	}
 }

@@ -21,5 +21,8 @@ public class ProductsServiceImpl implements IProductsService {
 	public Optional<Products> getProductsByID(UUID productID) {
 		return productsRepository.findById(productID);
 	}
+
+	@Override
+	public Products createProducts(Products products){ return productsRepository.save(products);}
 }
 
