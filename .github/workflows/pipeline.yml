@@ -26,13 +26,12 @@ jobs:
         run: mvn clean install
 
       - name: Run Spring Boot Application
-        run: java -jar target/payetonkawa-0.0.1-SNAPSHOT.jar
-        timeout-minutes: 1
+        run: |
+          java -jar target/payetonkawa-0.0.1-SNAPSHOT.jar
+          pkill -f "java -jar"
 
       - name: Run Tests
         run: mvn test
 
-      - name: Stop PostgreSQL and Spring Boot
-        run: |
-          docker-compose down
-          pkill -f "java -jar"
+      - name: Stop PostgreSQL
+        run: docker-compose down
