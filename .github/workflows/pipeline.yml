@@ -27,7 +27,7 @@ jobs:
 
       - name: Run Spring Boot Application
         run: java -jar target/payetonkawa-0.0.1-SNAPSHOT.jar
-        background: true
+        timeout-minutes: 1
 
       - name: Run Tests
         run: mvn test
