@@ -1,5 +1,6 @@
 package com.payetonkawa.payetonkawa.orders;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.payetonkawa.payetonkawa.customers.Customers;
 import com.payetonkawa.payetonkawa.products.Products;
 import com.payetonkawa.payetonkawa.utils.DefaultEntity;
@@ -29,7 +30,7 @@ public class Orders extends DefaultEntity {
             joinColumns = @JoinColumn(name = "orders_id"),
             inverseJoinColumns = @JoinColumn(name = "products_id")
     )
-    //@JsonIgnore
+    @JsonIgnore
     List<Products> productsList;
 
 }

@@ -1,5 +1,6 @@
 package com.payetonkawa.payetonkawa.products;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.payetonkawa.payetonkawa.orders.Orders;
 import com.payetonkawa.payetonkawa.utils.DefaultEntity;
 import jakarta.persistence.Column;
@@ -36,7 +37,7 @@ public class Products extends DefaultEntity {
     private String stock;
 
     @ManyToMany(mappedBy = "productsList")
-    //@JsonIgnore
+    @JsonIgnore
     private List<Orders> ordersList;
 
 }
