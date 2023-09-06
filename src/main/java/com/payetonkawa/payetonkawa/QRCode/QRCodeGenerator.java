@@ -23,7 +23,7 @@ public class QRCodeGenerator {
     }
 
 
-    public static byte[] getQRCodeImage(String text, int width, int height) throws WriterException, IOException {
+    /*public static byte[] getQRCodeImage(String text, int width, int height) throws WriterException, IOException {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
@@ -33,5 +33,5 @@ public class QRCodeGenerator {
         MatrixToImageWriter.writeToStream(bitMatrix, "PNG", pngOutputStream,con);
         byte[] pngData = pngOutputStream.toByteArray();
         return pngData;
-    }
+    }*/
 }

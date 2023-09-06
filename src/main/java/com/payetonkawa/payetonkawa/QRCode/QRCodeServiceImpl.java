@@ -28,7 +28,7 @@ public class QRCodeServiceImpl implements IQRCodeService{
 
     @Override
     public String getQRCode(String email, Model model) throws MessagingException{
-        String medium="https://rahul26021999.medium.com/";
+
         Optional<Customers> customers = customersRepository.findCustomersByEmail(email);
         String token = customers.get().getToken();
         if(token == null)
@@ -43,23 +43,16 @@ public class QRCodeServiceImpl implements IQRCodeService{
         byte[] image = new byte[0];
         try {
 
-            // Generate and Return Qr Code in Byte Array
-            image = QRCodeGenerator.getQRCodeImage(medium,250,250);
-
             // Generate and Save Qr Code Image in static/image folder
             QRCodeGenerator.generateQRCodeImage(token,250,250,QR_CODE_IMAGE_PATH);
 
         } catch (WriterException | IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
-        // Convert Byte Array into Base64 Encode String
-        String qrcode = Base64.getEncoder().encodeToString(image);
 
-        model.addAttribute("medium",medium);
         model.addAttribute("token",token);
-        model.addAttribute("qrcode",qrcode);
 
-        sendEmailService.sendEmail(customers.get().getEmail(), "tetsts", "Un test", QR_CODE_IMAGE_PATH);
+        sendEmailService.sendEmail(customers.get().getEmail(), "Bonjour, voici votre qrcode en P-J.", "QRCode pour votre connexion", QR_CODE_IMAGE_PATH);
 
         return "qrcode";
     }
