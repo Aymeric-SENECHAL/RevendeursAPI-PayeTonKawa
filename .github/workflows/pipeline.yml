@@ -19,9 +19,6 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: Build with Maven
-        run: mvn clean install
-
       - name: Run Spring Boot Application
         run: java -jar target/RevendeursAPI.jar
 
