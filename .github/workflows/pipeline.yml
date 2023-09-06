@@ -1,0 +1,28 @@
+name: Pipeline CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Run Spring Boot Application
+        run: java -jar target/RevendeursAPI.jar
+
+      - name: Run Tests
+        run: mvn test
