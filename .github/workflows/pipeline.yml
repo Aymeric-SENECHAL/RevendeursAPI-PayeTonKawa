@@ -36,3 +36,4 @@ jobs:
 
       - name: Stop PostgreSQL
         run: docker-compose down
+
